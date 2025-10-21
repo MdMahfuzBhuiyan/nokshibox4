@@ -68,8 +68,8 @@
             <ul class="hidden md:flex space-x-6 font-medium text-black text-base">
                 <li><a href="{% url 'home' %}" class="hover:text-red-700 transition duration-300">Home</a></li>
                 <li><a href="{% url 'products' %}" class="hover:text-red-700 transition duration-300">Products</a></li>
-                <li><a href="{% url 'about' %}" class="hover:text-red-700 transition duration-300">About Us</a></li>
-                <li><a href="#" class="hover:text-red-700 transition duration-300">Contact Us</a></li>
+                <li><a id="AboutUs" href="{% url 'about' %}" class="hover:text-red-700 transition duration-300">About Us</a></li>
+                <li><a id="ContactUs" href="{% url 'contact' %}" class="hover:text-red-700 transition duration-300">Contact Us</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'seller_home' %}" class="hover:text-red-700 transition duration-300">Dashboard</a></li>
                 {% endif %}
@@ -80,7 +80,7 @@
               <!-- Profile Dropdown -->
               <div class="relative dropdown">
                 <button class="flex items-center space-x-2 focus:outline-none">
-                  <img src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'image/id.jpg' %}{% endif %}"
+                  <img src="{% if user.photo %}{{ user.photo.url }}{% else %}{% static 'image/id.jpg' %}{% endif %}"
                        alt="{{ user.username }} profile image"
                        title="{{ user.username }}"
                        class="w-10 h-10 rounded-full border-2 border-[#d9b08c] object-cover">

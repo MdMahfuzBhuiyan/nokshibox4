@@ -1,0 +1,20 @@
+{
+  "email": "hello@nokshibox.com",
+  "phone": "+880 1712-345678",
+  "whatsapp": "8801712345678",
+  "sms": "+8801712345678",
+  "messenger_page_id": "foodpandaBangladesh",
+  "address": {
+    "line1": "123 Artisan Street, Dhanmondi",
+    "line2": "Dhaka 1209, Bangladesh"
+  },
+  "business_hours": {
+    "weekdays": "Mon - Sat: 10:00 AM - 7:00 PM",
+    "weekend": "Sunday: Closed"
+  },
+  "location": {
+    "latitude": "23.7509",
+    "longitude": "90.3761",
+    "place_name": "Dhanmondi, Dhaka"
+  }
+}

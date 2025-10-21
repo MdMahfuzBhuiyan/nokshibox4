@@ -1,0 +1,20 @@
+{
+  "candle_art": {
+    "title": "Aromatic Lavender Candle",
+    "details": "A handcrafted candle made with natural soy wax and scented with pure lavender essential oils. Perfect for relaxation and creating a calming atmosphere.",
+    "price": "15.99",
+    "image": "assets/candle.jpg",
+    "category": "candel"
+  },
+  "rasin_art": {
+    "title": "Ocean Wave Resin Coasters",
+    "details": "Set of four beautiful coasters with a stunning ocean wave effect created with epoxy resin. Protects your furniture in style.",
+    "price": "29.50",
+    "image": "assets/resin_coaster.jpg",
+    "category": "Rasin Art"
+  },
+  "candle_art_updated": {
+    "price": "19.99",
+    "image": "assets/candle_new.webp"
+  }
+}

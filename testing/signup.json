@@ -1,0 +1,22 @@
+{
+  "seller": {
+    "full_name": "Test Seller Pro",
+    "mobile_no": "01987654321",
+    "email": "seller.pro@example.com",
+    "role": "Seller",
+    "password": "SecurePass123!",
+    "photo": "assets/seller_photo.jpg"
+  },
+  "buyer": {
+    "full_name": "Regular Buyer",
+    "mobile_no": "01555555555",
+    "email": "buyer.regular@example.com",
+    "role": "Buyer",
+    "password": "SafePassword456!",
+    "photo": "assets/buyer_photo.jpg"
+  },
+  "seller_updated": {
+    "full_name": "Test Seller Pro (Updated)"
+  }
+}
+

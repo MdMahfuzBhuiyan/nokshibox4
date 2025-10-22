@@ -6,18 +6,6 @@
 {% block content %}
 
 <style>
-  /* Shimmer gradient background */
-  .shimmer-bg {
-    background: linear-gradient(135deg, #fef3f4 0%, #fef9f3 25%, #f3fef9 50%, #f3f6fe 75%, #fef3f4 100%);
-    background-size: 400% 400%;
-    animation: shimmer 15s ease infinite;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
   /* Fade in animations */
   @keyframes fadeInUp {
     from {
@@ -30,48 +18,8 @@
     }
   }
 
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   .animate-fadeInUp {
     animation: fadeInUp 1s ease-out forwards;
-  }
-
-  .animate-fadeInLeft {
-    animation: fadeInLeft 1s ease-out forwards;
-  }
-
-  .animate-fadeInRight {
-    animation: fadeInRight 1s ease-out forwards;
-  }
-
-  /* Glow effects */
-  @keyframes glow {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(1.1); }
-  }
-
-  .animate-glow {
-    animation: glow 3s ease-in-out infinite;
   }
 
   /* Message button hover effects */
@@ -85,14 +33,11 @@
   }
 </style>
 
-<!-- Contact Section with Gradient Background -->
-<section class="py-20 relative overflow-hidden shimmer-bg">
+<section class="min-h-screen py-20 px-4 bg-cover bg-center" style="background-image: url('{% static 'image/background.jpg' %}');">
   
-  <!-- Page Header -->
   <div class="text-center mb-16 animate-fadeInUp">
     <h1 class="text-4xl md:text-5xl font-bold text-gray-900 relative inline-block">
       Get In Touch
-      <!-- Wavy Underline -->
       <svg class="absolute left-1/2 transform -translate-x-1/2 -bottom-2 w-32 h-3" viewBox="0 0 128 10" preserveAspectRatio="none">
         <path d="M0 5 C16 0, 32 10, 48 5 S80 0, 96 5 S128 10, 128 5" stroke="#f472b6" stroke-width="2" fill="transparent"/>
       </svg>
@@ -104,32 +49,11 @@
 
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      
-      <!-- Left Column: Contact Form -->
-      <div class="animate-fadeInLeft">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10 relative overflow-hidden border border-gray-200">
-          <!-- Decorative glow -->
-          <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-pink-200 opacity-20 blur-3xl animate-glow"></div>
-          
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 relative z-10">Send Us a Message</h2>
-          
-          <form id="contactForm" class="space-y-5 relative z-10">
-            
-            <!-- Name Field -->
-            <div>
-              <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Your Name <span class="text-gray-400 text-xs">(Optional)</span></label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name"
-                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all outline-none"
-                placeholder="Enter your full name"
-              >
-            </div>
+    <div class="max-w-2xl mx-auto animate-fadeInUp">
+      <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
+        <form id="contactForm" class="space-y-6">
 
-            <!-- Email Field -->
             <div>
               <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address <span class="text-gray-400 text-xs">(Optional)</span></label>
               <input 
@@ -141,7 +65,6 @@
               >
             </div>
 
-            <!-- Phone Field (Optional) -->
             <div>
               <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number <span class="text-gray-400 text-xs">(Optional)</span></label>
               <input 
@@ -153,7 +76,6 @@
               >
             </div>
 
-            <!-- Message Textarea -->
             <div>
               <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Your Message <span class="text-gray-400 text-xs">(Optional)</span></label>
               <textarea 
@@ -165,12 +87,10 @@
               ></textarea>
             </div>
 
-            <!-- Send Options -->
             <div class="pt-4">
               <p class="text-sm font-semibold text-gray-700 mb-3">Choose how to send:</p>
-              <div class="grid grid-cols-2 gap-3">
+              <div class="grid grid-cols-1 gap-3">
                 
-                <!-- Email Button -->
                 <button 
                   type="button" 
                   onclick="sendViaEmail()"
@@ -183,90 +103,11 @@
                   Email
                 </button>
 
-                <!-- WhatsApp Button -->
-                <button 
-                  type="button" 
-                  onclick="sendViaWhatsApp()"
-                  class="msg-btn flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-xl font-medium hover:from-green-600 hover:to-green-700"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  WhatsApp
-                </button>
-
-                <!-- Messenger Button -->
-                <button 
-                  type="button" 
-                  onclick="sendViaMessenger()"
-                  class="msg-btn flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-3 rounded-xl font-medium hover:from-purple-600 hover:to-pink-600"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/>
-                  </svg>
-                  Messenger
-                </button>
-
-                <!-- SMS Button -->
-                <button 
-                  type="button" 
-                  onclick="sendViaSMS()"
-                  class="msg-btn flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 py-3 rounded-xl font-medium hover:from-teal-600 hover:to-teal-700"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
-                    <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
-                  </svg>
-                  SMS
-                </button>
-
               </div>
             </div>
 
-          </form>
-        </div>
+        </form>
       </div>
-
-      <!-- Right Column: Contact Info & Map -->
-      <div class="space-y-8 animate-fadeInRight">
-        
-        <!-- Contact Information Cards -->
-        <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-          
-          <div class="space-y-5" id="contactInfoContainer">
-            <!-- Will be populated by JavaScript -->
-          </div>
-        </div>
-
-        <!-- Map Card -->
-        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-          <div class="p-6">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Find Us Here</h2>
-          </div>
-          
-          <!-- Embedded Map -->
-          <div class="relative h-72 bg-gray-200" id="mapContainer">
-            <!-- Will be populated by JavaScript -->
-          </div>
-          
-          <div class="p-6" id="mapLinkContainer">
-            <!-- Will be populated by JavaScript -->
-          </div>
-        </div>
-
-        <!-- Decorative Image -->
-        <div class="hidden lg:block">
-          <img 
-            src="{% static 'image/contact-illustration.jpg' %}" 
-            alt="Contact Us" 
-            class="w-full h-64 object-cover rounded-3xl shadow-lg hover:scale-105 transition-transform duration-500"
-            onerror="this.style.display='none'"
-          >
-        </div>
-
-      </div>
-
     </div>
 
   </div>
@@ -281,16 +122,16 @@
     try {
       const response = await fetch("{% static 'data/contact_config.json' %}");
       contactConfig = await response.json();
-      populateContactInfo();
-      populateMap();
+      // Ensure the email is set to the one you requested
+      contactConfig.email = 'codomahfuz@gmail.com'; // Updated Email
     } catch (error) {
       console.error('Error loading contact config:', error);
       // Fallback to default values if file not found
       contactConfig = {
-        email: 'hello@nokshibox.com',
-        phone: '+8801957564231',
-        whatsapp: '880195764231',
-        sms: '+8801957564231',
+        email: 'codomahfuz@gmail.com', // Updated Email
+        phone: '+8801622889642',
+        whatsapp: '01622889642',
+        sms: '+8801622889642',
         messenger_page_id: '',
         address: {
           line1: '123 Artisan Street, Dhanmondi',
@@ -306,114 +147,16 @@
           place_name: 'Dhanmondi, Dhaka'
         }
       };
-      populateContactInfo();
-      populateMap();
     }
-  }
-
-  function populateContactInfo() {
-    const container = document.getElementById('contactInfoContainer');
-    container.innerHTML = `
-      <!-- Email -->
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900">Email</h3>
-          <a href="mailto:${contactConfig.email}" class="text-gray-600 hover:text-pink-500 transition">${contactConfig.email}</a>
-        </div>
-      </div>
-
-      <!-- Phone -->
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900">Phone</h3>
-          <a href="tel:${contactConfig.phone.replace(/\s/g, '')}" class="text-gray-600 hover:text-pink-500 transition">${contactConfig.phone}</a>
-        </div>
-      </div>
-
-      <!-- Address -->
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900">Office Address</h3>
-          <p class="text-gray-600">${contactConfig.address.line1}<br>${contactConfig.address.line2}</p>
-        </div>
-      </div>
-
-      <!-- Business Hours -->
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900">Business Hours</h3>
-          <p class="text-gray-600">${contactConfig.business_hours.weekdays}<br>${contactConfig.business_hours.weekend}</p>
-        </div>
-      </div>
-    `;
-  }
-
-  function populateMap() {
-    const lat = contactConfig.location.latitude;
-    const lng = contactConfig.location.longitude;
-    const placeName = contactConfig.location.place_name;
-    
-    // Populate map iframe
-    const mapContainer = document.getElementById('mapContainer');
-    mapContainer.innerHTML = `
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.898890636195!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${encodeURIComponent(placeName)}!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd"
-        width="100%" 
-        height="100%" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"
-        class="w-full h-full"
-      ></iframe>
-    `;
-
-    // Populate map link
-    const mapLinkContainer = document.getElementById('mapLinkContainer');
-    mapLinkContainer.innerHTML = `
-      <a 
-        href="https://maps.google.com/?q=${lat},${lng}" 
-        target="_blank"
-        class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-medium transition"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-          <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-        </svg>
-        Open in Google Maps
-      </a>
-    `;
   }
 
   // Get form values
   function getFormData() {
-    const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const message = document.getElementById('message').value.trim();
     
-    return { name, email, phone, message };
+    return { email, phone, message };
   }
 
   // Send via Email
@@ -421,103 +164,27 @@
     const data = getFormData();
     
     // Build subject
-    const subject = data.name 
-      ? encodeURIComponent(`Message from ${data.name}`)
-      : encodeURIComponent('Message from Contact Form');
+    const subject = encodeURIComponent('Message from NokshiBox Contact Form');
     
-    // Build body (exclude email from body)
+    // Build body
     let bodyParts = [];
     
-    if (data.name) bodyParts.push(`Name: ${data.name}`);
+    if (data.email) bodyParts.push(`From Email: ${data.email}`);
     if (data.phone) bodyParts.push(`Phone: ${data.phone}`);
-    if (data.message) bodyParts.push(`\nMessage:\n${data.message}`);
     
-    // Add signature if name provided
-    if (data.name) {
-      bodyParts.push(`\n\nRegards,\n${data.name}`);
-    }
-    
-    const body = bodyParts.length > 0 
-      ? encodeURIComponent(bodyParts.join('\n'))
-      : encodeURIComponent('Hello!');
-    
-    window.location.href = `mailto:${contactConfig.email}?subject=${subject}&body=${body}`;
-  }
-
-  // Send via WhatsApp
-  function sendViaWhatsApp() {
-    const data = getFormData();
-    
-    let textParts = [];
-    
-    // Add greeting with name if provided
-    if (data.name) {
-      textParts.push(`Hi, I'm ${data.name}`);
-    } else {
-      textParts.push('Hello!');
-    }
-    
-    // Add contact details
-    if (data.email) textParts.push(`Email: ${data.email}`);
-    if (data.phone) textParts.push(`Phone: ${data.phone}`);
-    
-    // Add message
     if (data.message) {
-      textParts.push('');
-      textParts.push(data.message);
+      bodyParts.push('\nMessage:\n' + data.message);
+    } else if (!data.email && !data.phone) {
+      bodyParts.push('Hello!'); // Add hello only if all fields are empty
     }
     
-    const text = encodeURIComponent(textParts.join('\n'));
-    window.open(`https://wa.me/${contactConfig.whatsapp}?text=${text}`, '_blank');
-  }
-
-  // Send via Messenger
-  function sendViaMessenger() {
-    const data = getFormData();
+    const body = encodeURIComponent(bodyParts.join('\n'));
     
-    if (contactConfig.messenger_page_id) {
-      // If we have a page ID, open messenger
-      window.open(`https://m.me/${contactConfig.messenger_page_id}`, '_blank');
-    } else {
-      // Show info message
-      let msg = 'Opening Facebook Messenger...';
-      if (data.name || data.email || data.phone || data.message) {
-        msg += '\n\nPlease include the following in your message:\n';
-        if (data.name) msg += `Name: ${data.name}\n`;
-        if (data.email) msg += `Email: ${data.email}\n`;
-        if (data.phone) msg += `Phone: ${data.phone}\n`;
-        if (data.message) msg += `\n${data.message}`;
-      }
-      alert(msg);
-      // Open generic messenger
-      window.open('https://www.messenger.com/', '_blank');
-    }
-  }
-  // Send via SMS
-  function sendViaSMS() {
-    const data = getFormData();
+    // Use the contactConfig.email, which defaults to the correct one
+    const mailtoUrl = `mailto:${contactConfig.email}?subject=${subject}&body=${body}`;
     
-    let textParts = [];
-    
-    // Add greeting with name if provided
-    if (data.name) {
-      textParts.push(`Hi, I'm ${data.name}`);
-    } else {
-      textParts.push('Hello!');
-    }
-    
-    // Add contact details
-    if (data.email) textParts.push(`Email: ${data.email}`);
-    if (data.phone) textParts.push(`Phone: ${data.phone}`);
-    
-    // Add message
-    if (data.message) {
-      textParts.push('');
-      textParts.push(data.message);
-    }
-    
-    const body = encodeURIComponent(textParts.join('\n'));
-    window.location.href = `sms:${contactConfig.sms}?body=${body}`;
+    // Open in a new tab
+    window.open(mailtoUrl, '_blank');
   }
 
   // Load configuration on page load

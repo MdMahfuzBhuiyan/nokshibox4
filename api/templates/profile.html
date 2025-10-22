@@ -9,25 +9,22 @@
 
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 justify-center">
 
-    <!-- Profile Card -->
     <div
-      class="{% if user_profile.role == 'seller' %}w-96 md:w-1/3{% else %}w-full md:w-2/3{% endif %} bg-[#F0EAD6]/70 rounded-2xl shadow-lg border-4 border-[#a9745b] p-6 text-center md:text-left flex flex-col {% if user_profile.role != 'seller' %}md:flex-row items-center md:items-start{% endif %}">
+      class="w-96 md:w-1/3 bg-[#F0EAD6]/70 rounded-2xl shadow-lg border-4 border-[#a9745b] p-6 text-center md:text-left flex flex-col">
       
       {% if user_profile.photo %}
         <img src="{{ user_profile.photo.url }}" alt="{{ user_profile.full_name }}"
-            class="w-45 h-45 rounded-full border-4 border-[#b5835a] object-cover {% if user_profile.role != 'seller' %}md:mr-6 mx-auto md:mx-0 mb-4 md:mb-0{% else %}mx-auto mb-4{% endif %}">
+            class="w-64 h-64 rounded-full border-4 border-[#b5835a] object-cover mx-auto mb-4">
       {% else %}
-        <div class="w-45 h-45 rounded-full bg-[#a9745b] flex items-center justify-center text-[#fff2d1] text-4xl font-bold {% if user_profile.role != 'seller' %}md:mr-6 mx-auto md:mx-0 mb-4 md:mb-0{% else %}mx-auto mb-4{% endif %}">
+        <div class="w-64 h-64 rounded-full bg-[#a9745b] flex items-center justify-center text-[#fff2d1] text-4xl font-bold mx-auto mb-4">
           {{ user_profile.full_name|slice:":1" }}
         </div>
       {% endif %}
 
 
-      <!-- User Info -->
       <div>
         <h2 class="text-2xl font-extrabold text-[#3b2f2f] mb-2">{{ user_profile.full_name }}</h2>
 
-        <!-- Contact Info -->
         <p class="text-[#4B3621]">
           <i class="fa-solid fa-envelope mr-2"></i>{{ user_profile.email }}
         </p>
@@ -43,15 +40,13 @@
           </p>
         {% endif %}
 
-        <!-- Request for Customization -->
         {% if not is_owner and user_profile.role == 'seller' %}
           <div class="mt-4">
             <button id="requestBtn"
-              class="flex-1 text-center bg-[#d9b08c] text-[#3b2f2f] font-semibold px-6 py-3 rounded-lg hover:bg-[#b5835a] hover:text-white transition duration-300 shadow-md">
+              class="w-full text-center bg-[#d9b08c] text-[#3b2f2f] font-semibold px-6 py-3 rounded-lg hover:bg-[#b5835a] hover:text-white transition duration-300 shadow-md">
               Request for Customization
             </button>
 
-            <!-- Hidden Text Box -->
             <div id="requestBox" class="hidden mt-4 bg-[#F0EAD6]/70 border border-[#b5835a]/50 rounded-lg p-4">
               <textarea id="customMessage" rows="4" placeholder="Describe your customization request..."
                 class="w-full p-2 border border-[#a9745b]/40 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b5835a] bg-[#fff9ee] text-[#3b2f2f]"></textarea>
@@ -75,27 +70,37 @@
             const sendBtn = document.getElementById('sendBtn');
             const messageInput = document.getElementById('customMessage');
 
+            // Show/hide the text box
             requestBtn.addEventListener('click', () => {
               requestBox.classList.toggle('hidden');
             });
 
+            // Close the text box
             closeBtn.addEventListener('click', () => {
               requestBox.classList.add('hidden');
             });
 
+            // Send button click event
             sendBtn.addEventListener('click', () => {
-              const message = encodeURIComponent(messageInput.value.trim());
+              const message = messageInput.value.trim(); // Get text from box
               if (message) {
                 const email = "{{ user_profile.email }}";
-                window.location.href = `mailto:${email}?subject=Customization%20Request&body=${message}`;
-                requestBox.classList.add('hidden');
-                messageInput.value = '';
+                const subject = encodeURIComponent("Customization Request from NokshiBox");
+                const body = encodeURIComponent(message); // Use the text from the box
+                
+                const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+                
+                // Open mail link in a new tab
+                window.open(mailtoUrl, '_blank'); 
+                
+                requestBox.classList.add('hidden'); // Hide box after sending
+                messageInput.value = ''; // Clear text
               } else {
                 alert("Please enter a message before sending.");
               }
             });
           </script>
-          {% endif %}
+        {% endif %}
 
         {% if is_owner %}
           <a id="EditProfile" href="{% url 'edit_profile' user_profile.pk %}"
@@ -113,7 +118,6 @@
       </div>
     </div>
 
-    <!-- Right Section -->
     {% if user_profile.role == 'seller' %}
     <div class="w-full md:w-2/3">
         <h2 class="text-2xl font-extrabold text-[#3b2f2f] border-b-2 border-[#b5835a] pb-2 mb-6">
@@ -137,16 +141,33 @@
           <p class="text-center text-[#4B3621] mt-8">You haven't added any products yet.</p>
         {% endif %}
     </div>
+    
+    {% else %}
+    <div class="w-full md:w-2/3">
+        <h2 class="text-2xl font-extrabold text-[#3b2f2f] border-b-2 border-[#b5835a] pb-2 mb-6">
+          Quick Actions
+        </h2>
+        <div class="bg-[#F0EAD6]/90 rounded-xl shadow-lg border border-[#a9745b]/50 p-6 space-y-4">
+          <a href="{% url 'products' %}" class="block w-full text-center bg-[#d9b08c] text-[#3b2f2f] font-semibold px-6 py-3 rounded-lg hover:bg-[#b5835a] hover:text-white transition duration-300 shadow-md">
+            Browse All Products
+          </a>
+          <a href="{% url 'about' %}" class="block w-full text-center bg-[#F0EAD6] text-[#3b2f2f] font-semibold px-6 py-3 rounded-lg hover:bg-[#e0d5c0] transition duration-300 shadow-sm border border-[#b5835a]/50">
+            Learn About Us
+          </a>
+          <a href="{% url 'contact' %}" class="block w-full text-center bg-[#F0EAD6] text-[#3b2f2f] font-semibold px-6 py-3 rounded-lg hover:bg-[#e0d5c0] transition duration-300 shadow-sm border border-[#b5835a]/50">
+            Contact Support
+          </a>
+        </div>
+    </div>
     {% endif %}
+
   </div>
 </div>
 
-<!-- Scroll to Top Button -->
 <button id="scrollTop" class="fixed bottom-5 right-5 bg-[#a9745b] text-white rounded-full w-12 h-12 flex items-center justify-center text-xl shadow-md hover:bg-[#8b5e3b] transition hidden">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- JS -->
 <script>
   // Scroll to Top
   const scrollBtn = document.getElementById('scrollTop');
@@ -160,7 +181,6 @@
   scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 {% endblock %}

@@ -1,3 +1,14 @@
-Django>=4.2,<5.0
-djangorestframework>=3.14
-Pillow>=10.0
+# Core Framework
+Django==5.1.4
+
+# Image Processing & Media
+Pillow==11.0.0
+
+# Frontend Integration
+djangotailwind==3.8.0
+
+# API Development
+djangorestframework==3.14
+
+# Form rendering
+django-widget-tweaks==1.5.1

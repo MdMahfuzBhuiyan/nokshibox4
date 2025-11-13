@@ -2,13 +2,13 @@
 Django==5.1.4
 
 # Image Processing & Media
-Pillow==11.0.0
+Pillow>=10.4.0 --pre
 
 # Frontend Integration
-djangotailwind==3.8.0
+django-tailwind==3.8.0
 
 # API Development
 djangorestframework==3.14
 
 # Form rendering
-django-widget-tweaks==1.5.1
+django-widget-tweaks==1.5.0
